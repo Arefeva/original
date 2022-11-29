@@ -1,0 +1,62 @@
+Sub ЗаголовокРабочегоЛиста()
+If Range("A1").Value = "Фамилия" Then
+Range("A2").Select
+Exit Sub
+End If
+ActiveSheet.Cells.Clear
+Range("a1:h1").Value = Array("фамилия", "Имя", "Пол", "Выбранный тур", "Оплачено", "фото", "Паспорт", "Срок")
+Range("A:A").ColumnWidth = 12
+Range("d:d").ColumnWidth = 14.4
+Range("2:2").Select
+ActiveWindow.FrezePanes = True
+Range("A2").Select
+End Sub
+
+Private Sub CommandButton1_Click()
+Dim Фамилия As String * 20
+Dim Имя As String * 20
+Dim Пол As String * 3
+Dim ВыбранныйТур As String * 20
+Dim Оплачено As String * 3
+Dim фото As String * 3
+Dim Паспорт As String * 3
+Dim Срок As String * 3
+Dim НомерСтроки As Integer
+НомерСтроки = ActiveSheet.Range("A1").CurrentRegion.Rows.Count + 1
+With UserForm1
+Фамилия = TextBox2.Text
+Имя = TextBox3.Text
+Срок = TextBox4.Text
+If Frame2.OptionButton1.Value = True Then
+Пол = "муж"
+Else
+Пол = "жен"
+End If
+If Frame1.CheckBox1.Value = True Then
+Оплачено = "да"
+Else
+Оплачено = "нет"
+End If
+If Frame1.CheckBox1.Value = True Then
+фото = "да"
+Else
+фото = "нет"
+End If
+If Frame1.CheckBox3.Value = True Then
+Паспорт = "да"
+Else
+Паспорт = "нет"
+End If
+ВыбранныйТур = ComboBox3.Text
+End With
+With ActiveSheet
+.Cells(НомерСтроки, 1).Value = Фамилия
+.Cells(НомерСтроки, 2).Value = Имя
+.Cells(НомерСтроки, 3).Value = Пол
+.Cells(НомерСтроки, 4).Value = ВыбранныйТур
+.Cells(НомерСтроки, 5).Value = Оплачено
+.Cells(НомерСтроки, 6).Value = фото
+.Cells(НомерСтроки, 7).Value = Паспорт
+.Cells(НомерСтроки, 8).Value = Срок
+End With
+End Sub
